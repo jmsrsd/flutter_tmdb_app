@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import '../types/movie/model/movie.model.dart';
-import '../utils/with_separator.dart';
+import 'package:flutter_tmdb_app/src/utils/with_separator.dart';
+import '../types/tv/model/tv.model.dart';
 
-class Movie extends HookWidget {
-  final MovieModel model;
+class TV extends HookWidget {
+  final TVModel model;
 
-  const Movie({
+  const TV({
     super.key,
     required this.model,
   });

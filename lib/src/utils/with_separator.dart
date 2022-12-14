@@ -2,8 +2,10 @@ List<T> withSeparator<T>({
   required T separator,
   required List<T> children,
 }) {
-  return children
-      .map((e) => [separator, e])
-      .reduce((v, e) => [...v, ...e])
-      .sublist(1);
+  return children.length < 2
+      ? children
+      : children
+          .map((e) => [separator, e])
+          .reduce((v, e) => [...v, ...e])
+          .sublist(1);
 }

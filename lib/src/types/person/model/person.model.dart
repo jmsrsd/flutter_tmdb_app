@@ -14,8 +14,12 @@ class PersonModel with _$PersonModel {
     @Default(-1) int id,
     @Default('') String name,
     @Default(-1.0) double popularity,
-    @Default(<MovieModel>[]) List<MovieModel> knownForMovies,
-    @Default(<TVModel>[]) List<TVModel> knownForTVs,
+    @JsonKey(name: 'known_for_movies')
+    @Default(<MovieModel>[])
+        List<MovieModel> knownForMovies,
+    @JsonKey(name: 'known_for_tvs')
+    @Default(<TVModel>[])
+        List<TVModel> knownForTVs,
   }) = _PersonModel;
 
   factory PersonModel.fromJson(Map<String, dynamic> json) =>

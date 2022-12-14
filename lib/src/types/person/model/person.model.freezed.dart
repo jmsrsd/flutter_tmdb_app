@@ -26,7 +26,9 @@ mixin _$PersonModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'known_for_movies')
   List<MovieModel> get knownForMovies => throw _privateConstructorUsedError;
+  @JsonKey(name: 'known_for_tvs')
   List<TVModel> get knownForTVs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,8 +49,8 @@ abstract class $PersonModelCopyWith<$Res> {
       int id,
       String name,
       double popularity,
-      List<MovieModel> knownForMovies,
-      List<TVModel> knownForTVs});
+      @JsonKey(name: 'known_for_movies') List<MovieModel> knownForMovies,
+      @JsonKey(name: 'known_for_tvs') List<TVModel> knownForTVs});
 }
 
 /// @nodoc
@@ -119,8 +121,8 @@ abstract class _$$_PersonModelCopyWith<$Res>
       int id,
       String name,
       double popularity,
-      List<MovieModel> knownForMovies,
-      List<TVModel> knownForTVs});
+      @JsonKey(name: 'known_for_movies') List<MovieModel> knownForMovies,
+      @JsonKey(name: 'known_for_tvs') List<TVModel> knownForTVs});
 }
 
 /// @nodoc
@@ -179,13 +181,16 @@ class __$$_PersonModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PersonModel with DiagnosticableTreeMixin implements _PersonModel {
   _$_PersonModel(
-      {@JsonKey(name: 'profile_path') this.profilePath,
+      {@JsonKey(name: 'profile_path')
+          this.profilePath,
       this.adult,
       this.id = -1,
       this.name = '',
       this.popularity = -1.0,
-      final List<MovieModel> knownForMovies = const <MovieModel>[],
-      final List<TVModel> knownForTVs = const <TVModel>[]})
+      @JsonKey(name: 'known_for_movies')
+          final List<MovieModel> knownForMovies = const <MovieModel>[],
+      @JsonKey(name: 'known_for_tvs')
+          final List<TVModel> knownForTVs = const <TVModel>[]})
       : _knownForMovies = knownForMovies,
         _knownForTVs = knownForTVs;
 
@@ -208,7 +213,7 @@ class _$_PersonModel with DiagnosticableTreeMixin implements _PersonModel {
   final double popularity;
   final List<MovieModel> _knownForMovies;
   @override
-  @JsonKey()
+  @JsonKey(name: 'known_for_movies')
   List<MovieModel> get knownForMovies {
     if (_knownForMovies is EqualUnmodifiableListView) return _knownForMovies;
     // ignore: implicit_dynamic_type
@@ -217,7 +222,7 @@ class _$_PersonModel with DiagnosticableTreeMixin implements _PersonModel {
 
   final List<TVModel> _knownForTVs;
   @override
-  @JsonKey()
+  @JsonKey(name: 'known_for_tvs')
   List<TVModel> get knownForTVs {
     if (_knownForTVs is EqualUnmodifiableListView) return _knownForTVs;
     // ignore: implicit_dynamic_type
@@ -289,13 +294,16 @@ class _$_PersonModel with DiagnosticableTreeMixin implements _PersonModel {
 
 abstract class _PersonModel implements PersonModel {
   factory _PersonModel(
-      {@JsonKey(name: 'profile_path') final String? profilePath,
+      {@JsonKey(name: 'profile_path')
+          final String? profilePath,
       final bool? adult,
       final int id,
       final String name,
       final double popularity,
-      final List<MovieModel> knownForMovies,
-      final List<TVModel> knownForTVs}) = _$_PersonModel;
+      @JsonKey(name: 'known_for_movies')
+          final List<MovieModel> knownForMovies,
+      @JsonKey(name: 'known_for_tvs')
+          final List<TVModel> knownForTVs}) = _$_PersonModel;
 
   factory _PersonModel.fromJson(Map<String, dynamic> json) =
       _$_PersonModel.fromJson;
@@ -312,8 +320,10 @@ abstract class _PersonModel implements PersonModel {
   @override
   double get popularity;
   @override
+  @JsonKey(name: 'known_for_movies')
   List<MovieModel> get knownForMovies;
   @override
+  @JsonKey(name: 'known_for_tvs')
   List<TVModel> get knownForTVs;
   @override
   @JsonKey(ignore: true)

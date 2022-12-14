@@ -2,15 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_tmdb_app/src/components/tv.component.dart';
 import '../../components/movie.component.dart';
-import '../../types/movie/model/movie.model.dart';
-import '../../types/movies/model/movies.model.dart';
+import '../../types/tv/model/tv.model.dart';
+import '../../types/tvs/model/tvs.model.dart';
 import '../../utils/with_separator.dart';
 
-class MainPageMovies extends HookWidget {
-  final MoviesModel model;
+class MainPageTVs extends HookWidget {
+  final TVsModel model;
 
-  const MainPageMovies({
+  const MainPageTVs({
     super.key,
     required this.model,
   });
@@ -32,7 +33,7 @@ class MainPageMovies extends HookWidget {
                   height: kToolbarHeight / 4.0,
                 ),
                 children: List.of(e.value).map((e) {
-                  final model = MovieModel.fromJson(e);
+                  final model = TVModel.fromJson(e);
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -42,7 +43,7 @@ class MainPageMovies extends HookWidget {
                       ),
                       Expanded(
                         flex: 7,
-                        child: Movie(model: model),
+                        child: TV(model: model),
                       ),
                     ],
                   );
