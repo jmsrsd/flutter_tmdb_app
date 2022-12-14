@@ -1,27 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movies.top_rated.get.params.dart';
+part of 'movies.get.params.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TopRatedMoviesGetParams _$$_TopRatedMoviesGetParamsFromJson(
-        Map<String, dynamic> json) =>
-    _$_TopRatedMoviesGetParams(
+_$_MoviesGetParams _$$_MoviesGetParamsFromJson(Map<String, dynamic> json) =>
+    _$_MoviesGetParams(
+      group: $enumDecodeNullable(_$MoviesGroupEnumMap, json['group']) ??
+          MoviesGroup.topRated,
       language: json['language'] as String? ?? 'en-US',
       page: json['page'] as int? ?? 1,
       region: $enumDecodeNullable(_$MovieRegionEnumMap, json['region']) ??
           MovieRegion.US,
     );
 
-Map<String, dynamic> _$$_TopRatedMoviesGetParamsToJson(
-        _$_TopRatedMoviesGetParams instance) =>
+Map<String, dynamic> _$$_MoviesGetParamsToJson(_$_MoviesGetParams instance) =>
     <String, dynamic>{
+      'group': _$MoviesGroupEnumMap[instance.group]!,
       'language': instance.language,
       'page': instance.page,
       'region': _$MovieRegionEnumMap[instance.region]!,
     };
+
+const _$MoviesGroupEnumMap = {
+  MoviesGroup.popular: 'popular',
+  MoviesGroup.upcoming: 'upcoming',
+  MoviesGroup.topRated: 'topRated',
+};
 
 const _$MovieRegionEnumMap = {
   MovieRegion.AF: 'AF',

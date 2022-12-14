@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tmdb_app/api.dart';
-import 'package:flutter_tmdb_app/env.dart';
+import 'package:flutter_tmdb_app/src/api.dart';
+import 'package:flutter_tmdb_app/src/env.dart';
 
 import '../../mocks/env.mock.dart';
 import '../../utils/describe.dart';

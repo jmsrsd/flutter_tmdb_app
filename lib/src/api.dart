@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter_tmdb_app/types/movies.top_rated/params/get/movies.top_rated.get.params.dart';
+import 'package:flutter_tmdb_app/src/types/movies/movies.group.dart';
+
+import 'types/movies/model/movies.model.dart';
+import 'types/movies/params/get/movies.get.params.dart';
 import 'package:http/http.dart' as http;
 
 import 'env.dart';
-import 'types/movies.top_rated/model/movies.top_rated.model.dart';
 
 class API {
   final Env env;
@@ -20,15 +22,22 @@ class API {
     };
   }
 
-  Future<TopRatedMoviesModel> getTopRatedMovies(
-    TopRatedMoviesGetParams params,
+  Future<MoviesModel> getMovies(
+    MoviesGetParams params,
   ) async {
+    final query = Uri.encodeFull(
+      params.toJson().entries.where((e) {
+        return e.key != 'group';
+      }).map((e) {
+        return '${e.key}=${e.value.toString().trim()}';
+      }).join('&'),
+    );
+
     final response = await http.get(
       Uri.parse(
         '${env.apiBaseUrl}'
-        '/movie/top_rated'
-        '?'
-        'page=1',
+        '${params.group.endpoint}'
+        '?$query',
       ),
       headers: header,
     );
@@ -36,6 +45,6 @@ class API {
     final data = jsonDecode(response.body);
     data['params'] = params.toJson();
 
-    return TopRatedMoviesModel.fromJson(data);
+    return MoviesModel.fromJson(data);
   }
 }

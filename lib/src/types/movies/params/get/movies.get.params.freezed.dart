@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'movies.top_rated.get.params.dart';
+part of 'movies.get.params.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TopRatedMoviesGetParams _$TopRatedMoviesGetParamsFromJson(
-    Map<String, dynamic> json) {
-  return _TopRatedMoviesGetParams.fromJson(json);
+MoviesGetParams _$MoviesGetParamsFromJson(Map<String, dynamic> json) {
+  return _MoviesGetParams.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TopRatedMoviesGetParams {
+mixin _$MoviesGetParams {
+  MoviesGroup get group => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
   MovieRegion get region => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TopRatedMoviesGetParamsCopyWith<TopRatedMoviesGetParams> get copyWith =>
+  $MoviesGetParamsCopyWith<MoviesGetParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TopRatedMoviesGetParamsCopyWith<$Res> {
-  factory $TopRatedMoviesGetParamsCopyWith(TopRatedMoviesGetParams value,
-          $Res Function(TopRatedMoviesGetParams) then) =
-      _$TopRatedMoviesGetParamsCopyWithImpl<$Res, TopRatedMoviesGetParams>;
+abstract class $MoviesGetParamsCopyWith<$Res> {
+  factory $MoviesGetParamsCopyWith(
+          MoviesGetParams value, $Res Function(MoviesGetParams) then) =
+      _$MoviesGetParamsCopyWithImpl<$Res, MoviesGetParams>;
   @useResult
-  $Res call({String language, int page, MovieRegion region});
+  $Res call({MoviesGroup group, String language, int page, MovieRegion region});
 }
 
 /// @nodoc
-class _$TopRatedMoviesGetParamsCopyWithImpl<$Res,
-        $Val extends TopRatedMoviesGetParams>
-    implements $TopRatedMoviesGetParamsCopyWith<$Res> {
-  _$TopRatedMoviesGetParamsCopyWithImpl(this._value, this._then);
+class _$MoviesGetParamsCopyWithImpl<$Res, $Val extends MoviesGetParams>
+    implements $MoviesGetParamsCopyWith<$Res> {
+  _$MoviesGetParamsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,11 +53,16 @@ class _$TopRatedMoviesGetParamsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? group = null,
     Object? language = null,
     Object? page = null,
     Object? region = null,
   }) {
     return _then(_value.copyWith(
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as MoviesGroup,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -76,33 +80,37 @@ class _$TopRatedMoviesGetParamsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TopRatedMoviesGetParamsCopyWith<$Res>
-    implements $TopRatedMoviesGetParamsCopyWith<$Res> {
-  factory _$$_TopRatedMoviesGetParamsCopyWith(_$_TopRatedMoviesGetParams value,
-          $Res Function(_$_TopRatedMoviesGetParams) then) =
-      __$$_TopRatedMoviesGetParamsCopyWithImpl<$Res>;
+abstract class _$$_MoviesGetParamsCopyWith<$Res>
+    implements $MoviesGetParamsCopyWith<$Res> {
+  factory _$$_MoviesGetParamsCopyWith(
+          _$_MoviesGetParams value, $Res Function(_$_MoviesGetParams) then) =
+      __$$_MoviesGetParamsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String language, int page, MovieRegion region});
+  $Res call({MoviesGroup group, String language, int page, MovieRegion region});
 }
 
 /// @nodoc
-class __$$_TopRatedMoviesGetParamsCopyWithImpl<$Res>
-    extends _$TopRatedMoviesGetParamsCopyWithImpl<$Res,
-        _$_TopRatedMoviesGetParams>
-    implements _$$_TopRatedMoviesGetParamsCopyWith<$Res> {
-  __$$_TopRatedMoviesGetParamsCopyWithImpl(_$_TopRatedMoviesGetParams _value,
-      $Res Function(_$_TopRatedMoviesGetParams) _then)
+class __$$_MoviesGetParamsCopyWithImpl<$Res>
+    extends _$MoviesGetParamsCopyWithImpl<$Res, _$_MoviesGetParams>
+    implements _$$_MoviesGetParamsCopyWith<$Res> {
+  __$$_MoviesGetParamsCopyWithImpl(
+      _$_MoviesGetParams _value, $Res Function(_$_MoviesGetParams) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? group = null,
     Object? language = null,
     Object? page = null,
     Object? region = null,
   }) {
-    return _then(_$_TopRatedMoviesGetParams(
+    return _then(_$_MoviesGetParams(
+      group: null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as MoviesGroup,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -121,15 +129,21 @@ class __$$_TopRatedMoviesGetParamsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TopRatedMoviesGetParams
+class _$_MoviesGetParams
     with DiagnosticableTreeMixin
-    implements _TopRatedMoviesGetParams {
-  _$_TopRatedMoviesGetParams(
-      {this.language = 'en-US', this.page = 1, this.region = MovieRegion.US});
+    implements _MoviesGetParams {
+  _$_MoviesGetParams(
+      {this.group = MoviesGroup.topRated,
+      this.language = 'en-US',
+      this.page = 1,
+      this.region = MovieRegion.US});
 
-  factory _$_TopRatedMoviesGetParams.fromJson(Map<String, dynamic> json) =>
-      _$$_TopRatedMoviesGetParamsFromJson(json);
+  factory _$_MoviesGetParams.fromJson(Map<String, dynamic> json) =>
+      _$$_MoviesGetParamsFromJson(json);
 
+  @override
+  @JsonKey()
+  final MoviesGroup group;
   @override
   @JsonKey()
   final String language;
@@ -142,14 +156,15 @@ class _$_TopRatedMoviesGetParams
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TopRatedMoviesGetParams(language: $language, page: $page, region: $region)';
+    return 'MoviesGetParams(group: $group, language: $language, page: $page, region: $region)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'TopRatedMoviesGetParams'))
+      ..add(DiagnosticsProperty('type', 'MoviesGetParams'))
+      ..add(DiagnosticsProperty('group', group))
       ..add(DiagnosticsProperty('language', language))
       ..add(DiagnosticsProperty('page', page))
       ..add(DiagnosticsProperty('region', region));
@@ -159,7 +174,8 @@ class _$_TopRatedMoviesGetParams
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TopRatedMoviesGetParams &&
+            other is _$_MoviesGetParams &&
+            (identical(other.group, group) || other.group == group) &&
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.page, page) || other.page == page) &&
@@ -168,33 +184,34 @@ class _$_TopRatedMoviesGetParams
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, language, page, region);
+  int get hashCode => Object.hash(runtimeType, group, language, page, region);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TopRatedMoviesGetParamsCopyWith<_$_TopRatedMoviesGetParams>
-      get copyWith =>
-          __$$_TopRatedMoviesGetParamsCopyWithImpl<_$_TopRatedMoviesGetParams>(
-              this, _$identity);
+  _$$_MoviesGetParamsCopyWith<_$_MoviesGetParams> get copyWith =>
+      __$$_MoviesGetParamsCopyWithImpl<_$_MoviesGetParams>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopRatedMoviesGetParamsToJson(
+    return _$$_MoviesGetParamsToJson(
       this,
     );
   }
 }
 
-abstract class _TopRatedMoviesGetParams implements TopRatedMoviesGetParams {
-  factory _TopRatedMoviesGetParams(
-      {final String language,
+abstract class _MoviesGetParams implements MoviesGetParams {
+  factory _MoviesGetParams(
+      {final MoviesGroup group,
+      final String language,
       final int page,
-      final MovieRegion region}) = _$_TopRatedMoviesGetParams;
+      final MovieRegion region}) = _$_MoviesGetParams;
 
-  factory _TopRatedMoviesGetParams.fromJson(Map<String, dynamic> json) =
-      _$_TopRatedMoviesGetParams.fromJson;
+  factory _MoviesGetParams.fromJson(Map<String, dynamic> json) =
+      _$_MoviesGetParams.fromJson;
 
+  @override
+  MoviesGroup get group;
   @override
   String get language;
   @override
@@ -203,6 +220,6 @@ abstract class _TopRatedMoviesGetParams implements TopRatedMoviesGetParams {
   MovieRegion get region;
   @override
   @JsonKey(ignore: true)
-  _$$_TopRatedMoviesGetParamsCopyWith<_$_TopRatedMoviesGetParams>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_MoviesGetParamsCopyWith<_$_MoviesGetParams> get copyWith =>
+      throw _privateConstructorUsedError;
 }

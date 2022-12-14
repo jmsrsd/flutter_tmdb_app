@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'movies.top_rated.model.dart';
+part of 'movies.model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,46 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TopRatedMoviesModel _$TopRatedMoviesModelFromJson(Map<String, dynamic> json) {
-  return _TopRatedMoviesModel.fromJson(json);
+MoviesModel _$MoviesModelFromJson(Map<String, dynamic> json) {
+  return _MoviesModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TopRatedMoviesModel {
+mixin _$MoviesModel {
   @JsonKey(name: 'total_pages')
   int get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_results')
   int get totalResults => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
   List<MovieModel> get results => throw _privateConstructorUsedError;
-  TopRatedMoviesGetParams get params => throw _privateConstructorUsedError;
+  MoviesGetParams get params => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TopRatedMoviesModelCopyWith<TopRatedMoviesModel> get copyWith =>
+  $MoviesModelCopyWith<MoviesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TopRatedMoviesModelCopyWith<$Res> {
-  factory $TopRatedMoviesModelCopyWith(
-          TopRatedMoviesModel value, $Res Function(TopRatedMoviesModel) then) =
-      _$TopRatedMoviesModelCopyWithImpl<$Res, TopRatedMoviesModel>;
+abstract class $MoviesModelCopyWith<$Res> {
+  factory $MoviesModelCopyWith(
+          MoviesModel value, $Res Function(MoviesModel) then) =
+      _$MoviesModelCopyWithImpl<$Res, MoviesModel>;
   @useResult
   $Res call(
       {@JsonKey(name: 'total_pages') int totalPages,
       @JsonKey(name: 'total_results') int totalResults,
       int page,
       List<MovieModel> results,
-      TopRatedMoviesGetParams params});
+      MoviesGetParams params});
 
-  $TopRatedMoviesGetParamsCopyWith<$Res> get params;
+  $MoviesGetParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
-class _$TopRatedMoviesModelCopyWithImpl<$Res, $Val extends TopRatedMoviesModel>
-    implements $TopRatedMoviesModelCopyWith<$Res> {
-  _$TopRatedMoviesModelCopyWithImpl(this._value, this._then);
+class _$MoviesModelCopyWithImpl<$Res, $Val extends MoviesModel>
+    implements $MoviesModelCopyWith<$Res> {
+  _$MoviesModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,25 +89,25 @@ class _$TopRatedMoviesModelCopyWithImpl<$Res, $Val extends TopRatedMoviesModel>
       params: null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
-              as TopRatedMoviesGetParams,
+              as MoviesGetParams,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TopRatedMoviesGetParamsCopyWith<$Res> get params {
-    return $TopRatedMoviesGetParamsCopyWith<$Res>(_value.params, (value) {
+  $MoviesGetParamsCopyWith<$Res> get params {
+    return $MoviesGetParamsCopyWith<$Res>(_value.params, (value) {
       return _then(_value.copyWith(params: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_TopRatedMoviesModelCopyWith<$Res>
-    implements $TopRatedMoviesModelCopyWith<$Res> {
-  factory _$$_TopRatedMoviesModelCopyWith(_$_TopRatedMoviesModel value,
-          $Res Function(_$_TopRatedMoviesModel) then) =
-      __$$_TopRatedMoviesModelCopyWithImpl<$Res>;
+abstract class _$$_MoviesModelCopyWith<$Res>
+    implements $MoviesModelCopyWith<$Res> {
+  factory _$$_MoviesModelCopyWith(
+          _$_MoviesModel value, $Res Function(_$_MoviesModel) then) =
+      __$$_MoviesModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,18 +115,18 @@ abstract class _$$_TopRatedMoviesModelCopyWith<$Res>
       @JsonKey(name: 'total_results') int totalResults,
       int page,
       List<MovieModel> results,
-      TopRatedMoviesGetParams params});
+      MoviesGetParams params});
 
   @override
-  $TopRatedMoviesGetParamsCopyWith<$Res> get params;
+  $MoviesGetParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
-class __$$_TopRatedMoviesModelCopyWithImpl<$Res>
-    extends _$TopRatedMoviesModelCopyWithImpl<$Res, _$_TopRatedMoviesModel>
-    implements _$$_TopRatedMoviesModelCopyWith<$Res> {
-  __$$_TopRatedMoviesModelCopyWithImpl(_$_TopRatedMoviesModel _value,
-      $Res Function(_$_TopRatedMoviesModel) _then)
+class __$$_MoviesModelCopyWithImpl<$Res>
+    extends _$MoviesModelCopyWithImpl<$Res, _$_MoviesModel>
+    implements _$$_MoviesModelCopyWith<$Res> {
+  __$$_MoviesModelCopyWithImpl(
+      _$_MoviesModel _value, $Res Function(_$_MoviesModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +138,7 @@ class __$$_TopRatedMoviesModelCopyWithImpl<$Res>
     Object? results = null,
     Object? params = null,
   }) {
-    return _then(_$_TopRatedMoviesModel(
+    return _then(_$_MoviesModel(
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
@@ -158,17 +158,15 @@ class __$$_TopRatedMoviesModelCopyWithImpl<$Res>
       params: null == params
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
-              as TopRatedMoviesGetParams,
+              as MoviesGetParams,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_TopRatedMoviesModel
-    with DiagnosticableTreeMixin
-    implements _TopRatedMoviesModel {
-  _$_TopRatedMoviesModel(
+class _$_MoviesModel with DiagnosticableTreeMixin implements _MoviesModel {
+  _$_MoviesModel(
       {@JsonKey(name: 'total_pages') this.totalPages = -1,
       @JsonKey(name: 'total_results') this.totalResults = -1,
       this.page = -1,
@@ -176,8 +174,8 @@ class _$_TopRatedMoviesModel
       required this.params})
       : _results = results;
 
-  factory _$_TopRatedMoviesModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TopRatedMoviesModelFromJson(json);
+  factory _$_MoviesModel.fromJson(Map<String, dynamic> json) =>
+      _$$_MoviesModelFromJson(json);
 
   @override
   @JsonKey(name: 'total_pages')
@@ -198,18 +196,18 @@ class _$_TopRatedMoviesModel
   }
 
   @override
-  final TopRatedMoviesGetParams params;
+  final MoviesGetParams params;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TopRatedMoviesModel(totalPages: $totalPages, totalResults: $totalResults, page: $page, results: $results, params: $params)';
+    return 'MoviesModel(totalPages: $totalPages, totalResults: $totalResults, page: $page, results: $results, params: $params)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'TopRatedMoviesModel'))
+      ..add(DiagnosticsProperty('type', 'MoviesModel'))
       ..add(DiagnosticsProperty('totalPages', totalPages))
       ..add(DiagnosticsProperty('totalResults', totalResults))
       ..add(DiagnosticsProperty('page', page))
@@ -221,7 +219,7 @@ class _$_TopRatedMoviesModel
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TopRatedMoviesModel &&
+            other is _$_MoviesModel &&
             (identical(other.totalPages, totalPages) ||
                 other.totalPages == totalPages) &&
             (identical(other.totalResults, totalResults) ||
@@ -239,28 +237,27 @@ class _$_TopRatedMoviesModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TopRatedMoviesModelCopyWith<_$_TopRatedMoviesModel> get copyWith =>
-      __$$_TopRatedMoviesModelCopyWithImpl<_$_TopRatedMoviesModel>(
-          this, _$identity);
+  _$$_MoviesModelCopyWith<_$_MoviesModel> get copyWith =>
+      __$$_MoviesModelCopyWithImpl<_$_MoviesModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopRatedMoviesModelToJson(
+    return _$$_MoviesModelToJson(
       this,
     );
   }
 }
 
-abstract class _TopRatedMoviesModel implements TopRatedMoviesModel {
-  factory _TopRatedMoviesModel(
+abstract class _MoviesModel implements MoviesModel {
+  factory _MoviesModel(
       {@JsonKey(name: 'total_pages') final int totalPages,
       @JsonKey(name: 'total_results') final int totalResults,
       final int page,
       final List<MovieModel> results,
-      required final TopRatedMoviesGetParams params}) = _$_TopRatedMoviesModel;
+      required final MoviesGetParams params}) = _$_MoviesModel;
 
-  factory _TopRatedMoviesModel.fromJson(Map<String, dynamic> json) =
-      _$_TopRatedMoviesModel.fromJson;
+  factory _MoviesModel.fromJson(Map<String, dynamic> json) =
+      _$_MoviesModel.fromJson;
 
   @override
   @JsonKey(name: 'total_pages')
@@ -273,9 +270,9 @@ abstract class _TopRatedMoviesModel implements TopRatedMoviesModel {
   @override
   List<MovieModel> get results;
   @override
-  TopRatedMoviesGetParams get params;
+  MoviesGetParams get params;
   @override
   @JsonKey(ignore: true)
-  _$$_TopRatedMoviesModelCopyWith<_$_TopRatedMoviesModel> get copyWith =>
+  _$$_MoviesModelCopyWith<_$_MoviesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
