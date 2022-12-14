@@ -1,4 +1,4 @@
-import 'package:flutter_tmdb_app/src/env.dart';
+import '../env.dart';
 
 import '../api.dart';
 

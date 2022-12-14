@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_tmdb_app/src/types/media.type.dart';
-import 'package:flutter_tmdb_app/src/types/movie/model/movie.model.dart';
-import 'package:flutter_tmdb_app/src/types/person/model/person.model.dart';
+import 'types/media.type.dart';
+import 'types/movie/model/movie.model.dart';
+import 'types/person/model/person.model.dart';
 import 'package:http/http.dart' as http;
 
 import 'env.dart';

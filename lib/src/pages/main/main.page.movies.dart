@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_tmdb_app/src/components/movie.component.dart';
-import 'package:flutter_tmdb_app/src/types/movies/model/movies.model.dart';
-import 'package:flutter_tmdb_app/src/utils/with_separator.dart';
+import '../../components/movie.component.dart';
+import '../../types/movies/model/movies.model.dart';
+import '../../utils/with_separator.dart';
 
 class MainPageMovies extends HookWidget {
   final MoviesModel model;

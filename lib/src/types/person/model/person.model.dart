@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_tmdb_app/src/types/movie/model/movie.model.dart';
-import 'package:flutter_tmdb_app/src/types/tv/model/tv.model.dart';
+import '../../movie/model/movie.model.dart';
+import '../../tv/model/tv.model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'person.model.freezed.dart';

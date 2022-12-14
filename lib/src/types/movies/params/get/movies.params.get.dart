@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
-import '../../movies.group.dart';
-import '../../../movie/movie.region.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../movie/movie.region.dart';
+import '../../movies.group.dart';
 
 part 'movies.params.get.freezed.dart';
 part 'movies.params.get.g.dart';

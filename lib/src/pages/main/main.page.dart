@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_tmdb_app/src/api.dart';
-import 'package:flutter_tmdb_app/src/hooks/api.hook.dart';
-import 'package:flutter_tmdb_app/src/hooks/async.hook.dart';
-import 'package:flutter_tmdb_app/src/types/movies/movies.group.dart';
-import 'package:flutter_tmdb_app/src/types/movies/params/get/movies.params.get.dart';
+import '../../hooks/api.hook.dart';
+import '../../hooks/async.hook.dart';
+import '../../types/movies/movies.group.dart';
+import '../../types/movies/params/get/movies.params.get.dart';
 
 import 'main.page.movies.dart';
 
