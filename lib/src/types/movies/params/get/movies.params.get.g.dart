@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movies.get.params.dart';
+part of 'movies.params.get.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -25,6 +25,7 @@ Map<String, dynamic> _$$_MoviesGetParamsToJson(_$_MoviesGetParams instance) =>
     };
 
 const _$MoviesGroupEnumMap = {
+  MoviesGroup.nowPlaying: 'nowPlaying',
   MoviesGroup.popular: 'popular',
   MoviesGroup.upcoming: 'upcoming',
   MoviesGroup.topRated: 'topRated',

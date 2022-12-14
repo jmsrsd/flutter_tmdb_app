@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_tmdb_app/src/types/movies/movies.group.dart';
+import '../../movies.group.dart';
 import '../../../movie/movie.region.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'movies.get.params.freezed.dart';
-part 'movies.get.params.g.dart';
+part 'movies.params.get.freezed.dart';
+part 'movies.params.get.g.dart';
 
 @freezed
 class MoviesGetParams with _$MoviesGetParams {

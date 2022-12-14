@@ -1,4 +1,5 @@
 enum MoviesGroup {
+  nowPlaying('/movie/now_playing'),
   popular('/movie/popular'),
   upcoming('/movie/upcoming'),
   topRated('/movie/top_rated');

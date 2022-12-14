@@ -13,10 +13,6 @@ void main() {
   describe({
     'API': {
       'GET': {
-        'Popular TV shows': () async {},
-        'Top rated TV shows': () async {},
-        'On the air TV shows': () async {},
-        'Airing today TV shows': () async {},
         'Popular people': () async {},
       },
     },

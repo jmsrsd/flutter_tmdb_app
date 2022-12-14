@@ -5,6 +5,9 @@ import 'package:flutter_tmdb_app/src/types/movie/model/movie.model.dart';
 import 'package:flutter_tmdb_app/src/types/movie/movie.region.dart';
 import 'package:flutter_tmdb_app/src/types/movies/movies.group.dart';
 import 'package:flutter_tmdb_app/src/types/movies/params/get/movies.params.get.dart';
+import 'package:flutter_tmdb_app/src/types/tv/model/tv.model.dart';
+import 'package:flutter_tmdb_app/src/types/tvs/params/get/tvs.params.get.dart';
+import 'package:flutter_tmdb_app/src/types/tvs/tvs.group.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../utils/describe.dart';
@@ -18,20 +21,20 @@ void main() {
   });
   describe({
     'API': {
-      'Movies': {
+      'TVs': {
         'Group': () async {
-          const groups = MoviesGroup.values;
+          const groups = TVsGroup.values;
           final groupNames = List.of(groups.map((e) => e.name));
 
-          expect(groupNames, contains('upcoming'));
-          expect(groupNames, contains('topRated'));
-          expect(groupNames, contains('nowPlaying'));
+          expect(groupNames, contains('airingToday'));
+          expect(groupNames, contains('onTheAir'));
           expect(groupNames, contains('popular'));
+          expect(groupNames, contains('topRated'));
         },
         'GET': Map.fromEntries(
-          MoviesGroup.values.map((group) {
+          TVsGroup.values.map((group) {
             return MapEntry(group.endpoint, () async {
-              final params = MoviesGetParams(group: group);
+              final params = TVsGetParams(group: group);
 
               expect(params.group, equals(group));
 
@@ -42,20 +45,16 @@ void main() {
               expect(params.page.runtimeType, equals(int));
               expect(params.page, equals(1));
 
-              expect(params.region.runtimeType, equals(MovieRegion));
-              expect(params.region, equals(MovieRegion.US));
-
               expect(
                 params.toJson(),
                 equals({
                   'language': 'en-US',
                   'page': 1,
-                  'region': 'US',
                   'group': group.name,
                 }),
               );
 
-              final response = await api.getMovies(params);
+              final response = await api.getTVs(params);
 
               expect(
                 response.params,
@@ -75,7 +74,7 @@ void main() {
               );
               expect(
                 response.results.runtimeType,
-                equals(EqualUnmodifiableListView<MovieModel>),
+                equals(EqualUnmodifiableListView<TVModel>),
               );
               expect(
                 response.results.length,

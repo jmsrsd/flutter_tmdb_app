@@ -22,7 +22,7 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) {
 mixin _$MovieModel {
   bool get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ mixin _$MovieModel {
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -57,14 +57,14 @@ abstract class $MovieModelCopyWith<$Res> {
   @useResult
   $Res call(
       {bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'release_date') String releaseDate,
       String title,
       bool video,
@@ -86,14 +86,14 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
   @override
   $Res call({
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? id = null,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -105,10 +105,10 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: null == genreIds
           ? _value.genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -133,10 +133,10 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -171,14 +171,14 @@ abstract class _$$_MovieModelCopyWith<$Res>
   @useResult
   $Res call(
       {bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'release_date') String releaseDate,
       String title,
       bool video,
@@ -198,14 +198,14 @@ class __$$_MovieModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? id = null,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -217,10 +217,10 @@ class __$$_MovieModelCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: null == genreIds
           ? _value._genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -245,10 +245,10 @@ class __$$_MovieModelCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -278,14 +278,14 @@ class __$$_MovieModelCopyWithImpl<$Res>
 class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
   _$_MovieModel(
       {this.adult = false,
-      @JsonKey(name: 'backdrop_path') this.backdropPath = '',
+      @JsonKey(name: 'backdrop_path') this.backdropPath,
       @JsonKey(name: 'genre_ids') final List<int> genreIds = const <int>[],
       this.id = -1,
       @JsonKey(name: 'original_language') this.originalLanguage = '',
       @JsonKey(name: 'original_title') this.originalTitle = '',
       this.overview = '',
       this.popularity = -1.0,
-      @JsonKey(name: 'poster_path') this.posterPath = '',
+      @JsonKey(name: 'poster_path') this.posterPath,
       @JsonKey(name: 'release_date') this.releaseDate = '',
       this.title = '',
       this.video = false,
@@ -301,7 +301,7 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
   final bool adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   final List<int> _genreIds;
   @override
   @JsonKey(name: 'genre_ids')
@@ -328,7 +328,7 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
   final double popularity;
   @override
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
   @override
   @JsonKey(name: 'release_date')
   final String releaseDate;
@@ -437,14 +437,14 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
 abstract class _MovieModel implements MovieModel {
   factory _MovieModel(
       {final bool adult,
-      @JsonKey(name: 'backdrop_path') final String backdropPath,
+      @JsonKey(name: 'backdrop_path') final String? backdropPath,
       @JsonKey(name: 'genre_ids') final List<int> genreIds,
       final int id,
       @JsonKey(name: 'original_language') final String originalLanguage,
       @JsonKey(name: 'original_title') final String originalTitle,
       final String overview,
       final double popularity,
-      @JsonKey(name: 'poster_path') final String posterPath,
+      @JsonKey(name: 'poster_path') final String? posterPath,
       @JsonKey(name: 'release_date') final String releaseDate,
       final String title,
       final bool video,
@@ -458,7 +458,7 @@ abstract class _MovieModel implements MovieModel {
   bool get adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath;
+  String? get backdropPath;
   @override
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds;
@@ -476,7 +476,7 @@ abstract class _MovieModel implements MovieModel {
   double get popularity;
   @override
   @JsonKey(name: 'poster_path')
-  String get posterPath;
+  String? get posterPath;
   @override
   @JsonKey(name: 'release_date')
   String get releaseDate;

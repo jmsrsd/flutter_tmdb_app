@@ -9,7 +9,7 @@ part of 'movie.model.dart';
 _$_MovieModel _$$_MovieModelFromJson(Map<String, dynamic> json) =>
     _$_MovieModel(
       adult: json['adult'] as bool? ?? false,
-      backdropPath: json['backdrop_path'] as String? ?? '',
+      backdropPath: json['backdrop_path'] as String?,
       genreIds: (json['genre_ids'] as List<dynamic>?)
               ?.map((e) => e as int)
               .toList() ??
@@ -19,7 +19,7 @@ _$_MovieModel _$$_MovieModelFromJson(Map<String, dynamic> json) =>
       originalTitle: json['original_title'] as String? ?? '',
       overview: json['overview'] as String? ?? '',
       popularity: (json['popularity'] as num?)?.toDouble() ?? -1.0,
-      posterPath: json['poster_path'] as String? ?? '',
+      posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String? ?? '',
       title: json['title'] as String? ?? '',
       video: json['video'] as bool? ?? false,
