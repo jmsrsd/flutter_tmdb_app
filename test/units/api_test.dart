@@ -2,47 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tmdb_app/api.dart';
-import 'package:flutter_tmdb_app/dotenv.dart';
+import 'package:flutter_tmdb_app/types/movies.top_rated/params/get/movies.top_rated.get.params.dart';
+import 'package:flutter_tmdb_app/env.dart';
+import 'package:flutter_tmdb_app/types/movie/movie.region.dart';
+import 'package:flutter_tmdb_app/types/movie/model/movie.model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
 
+import '../mocks/env.mock.dart';
 import '../utils/describe.dart';
 
 void main() {
-  setUpAll(Dotenv.load);
+  setUpAll(() async {
+    await Env.initialize();
+  });
   describe({
     'API': {
-      'Header': () async {
-        final api = API(
-          accessToken: 'ThisIsRandomAPIAccessToken',
-        );
-        expect(
-          api.header,
-          equals({
-            'Authorization': 'Bearer ThisIsRandomAPIAccessToken',
-            'Content-Type': 'application/json;charset=utf-8',
-          }),
-        );
-      },
       'GET': {
-        'Top rated movies': () async {
-          final api = API(
-            accessToken: Dotenv.apiAccessToken,
-          );
-          final response = await http.get(
-            Uri.parse(
-              '${Dotenv.apiBaseUrl}'
-              '/movie/top_rated'
-              '?'
-              'page=1',
-            ),
-            headers: api.header,
-          );
-          final data = jsonDecode(response.body);
-          expect(
-            data,
-            equals(data),
-          );
-        },
         'Upcoming movies': () async {},
         'Now playing movies': () async {},
         'Popular movies': () async {},
