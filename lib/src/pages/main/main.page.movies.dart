@@ -47,12 +47,11 @@ class MainPageMovies extends HookWidget {
     return Column(
       children: [
         ListTile(
-          onTap: () {},
           title: const Text('Movies'),
           subtitle: Text(group),
           leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.arrow_drop_down_outlined),
+            onPressed: onGroupSelectionButtonTap,
+            icon: const Icon(Icons.menu_outlined),
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

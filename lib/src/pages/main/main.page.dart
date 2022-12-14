@@ -11,6 +11,7 @@ import '../../types/movies/params/get/movies.params.get.dart';
 import '../../types/persons/params/get/persons.params.get.dart';
 import '../../types/persons/persons.group.dart';
 import '../../types/tvs/params/get/tvs.params.get.dart';
+import 'main.page.group.selection.dart';
 import 'main.page.movies.dart';
 
 class MainPage extends HookWidget {
@@ -132,6 +133,9 @@ class MainPage extends HookWidget {
                           ? const CircularProgressIndicator()
                           : MainPageMovies(
                               movies: movies.requireData,
+                              onGroupSelectionButtonTap: () {
+                                pageIndex.value = 3;
+                              },
                               onBackPageButtonTap: () {
                                 if (moviesParams.value.page <= 1) {
                                   return;
@@ -169,6 +173,15 @@ class MainPage extends HookWidget {
                           : MainPagePersons(
                               persons: persons.requireData,
                             ),
+                    ),
+                    MainPageGroupSelection(
+                      onMovieGroupSelected: (group) {
+                        moviesParams.value = moviesParams.value.copyWith(
+                          group: group,
+                          page: 1,
+                        );
+                        pageIndex.value = 0;
+                      },
                     ),
                   ].map((e) {
                     return useAnimatedSwitcher(child: e);
