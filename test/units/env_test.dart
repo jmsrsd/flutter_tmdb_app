@@ -24,6 +24,12 @@ void main() {
         expect(apiBaseUrl, isNot(equals(null)));
         expect(apiBaseUrl, isNot(equals('')));
       },
+      'API Base Image URL': () async {
+        final apiBaseUrl = Env.get().apiBaseImageUrl;
+
+        expect(apiBaseUrl, isNot(equals(null)));
+        expect(apiBaseUrl, isNot(equals('')));
+      },
     }
   });
 }

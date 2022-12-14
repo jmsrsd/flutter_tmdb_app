@@ -19,4 +19,8 @@ class Env {
   String get apiBaseUrl {
     return 'https://api.themoviedb.org/3';
   }
+
+  String get apiBaseImageUrl {
+    return 'https://image.tmdb.org/t/p/w500';
+  }
 }

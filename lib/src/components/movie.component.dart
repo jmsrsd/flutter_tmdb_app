@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_tmdb_app/src/env.dart';
 import 'package:flutter_tmdb_app/src/hooks/api.hook.dart';
 import '../types/movie/model/movie.model.dart';
 import '../utils/with_separator.dart';
@@ -18,7 +19,7 @@ class Movie extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: 'https://image.tmdb.org/t/p/w500'
+      imageUrl: '${Env.get().apiBaseImageUrl}'
           '${movie.posterPath}',
       httpHeaders: useAPI().header,
       progressIndicatorBuilder: (context, url, progress) {
