@@ -20,6 +20,8 @@ TVModel _$TVModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TVModel {
+  @JsonKey(name: 'media_type')
+  MediaType get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
   String? get posterPath => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
@@ -54,7 +56,8 @@ abstract class $TVModelCopyWith<$Res> {
       _$TVModelCopyWithImpl<$Res, TVModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'poster_path') String? posterPath,
+      {@JsonKey(name: 'media_type') MediaType mediaType,
+      @JsonKey(name: 'poster_path') String? posterPath,
       double popularity,
       int id,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
@@ -82,6 +85,7 @@ class _$TVModelCopyWithImpl<$Res, $Val extends TVModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? mediaType = null,
     Object? posterPath = freezed,
     Object? popularity = null,
     Object? id = null,
@@ -97,6 +101,10 @@ class _$TVModelCopyWithImpl<$Res, $Val extends TVModel>
     Object? originalName = null,
   }) {
     return _then(_value.copyWith(
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
+              as MediaType,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -161,7 +169,8 @@ abstract class _$$_TVModelCopyWith<$Res> implements $TVModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'poster_path') String? posterPath,
+      {@JsonKey(name: 'media_type') MediaType mediaType,
+      @JsonKey(name: 'poster_path') String? posterPath,
       double popularity,
       int id,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
@@ -186,6 +195,7 @@ class __$$_TVModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? mediaType = null,
     Object? posterPath = freezed,
     Object? popularity = null,
     Object? id = null,
@@ -201,6 +211,10 @@ class __$$_TVModelCopyWithImpl<$Res>
     Object? originalName = null,
   }) {
     return _then(_$_TVModel(
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
+              as MediaType,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -261,7 +275,9 @@ class __$$_TVModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
   _$_TVModel(
-      {@JsonKey(name: 'poster_path')
+      {@JsonKey(name: 'media_type')
+          this.mediaType = MediaType.tv,
+      @JsonKey(name: 'poster_path')
           this.posterPath,
       this.popularity = -1.0,
       this.id = -1,
@@ -289,6 +305,9 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
   factory _$_TVModel.fromJson(Map<String, dynamic> json) =>
       _$$_TVModelFromJson(json);
 
+  @override
+  @JsonKey(name: 'media_type')
+  final MediaType mediaType;
   @override
   @JsonKey(name: 'poster_path')
   final String? posterPath;
@@ -343,7 +362,7 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TVModel(posterPath: $posterPath, popularity: $popularity, id: $id, backdropPath: $backdropPath, voteAverage: $voteAverage, overview: $overview, firstAirDate: $firstAirDate, originCountry: $originCountry, genreIds: $genreIds, originalLanguage: $originalLanguage, voteCount: $voteCount, name: $name, originalName: $originalName)';
+    return 'TVModel(mediaType: $mediaType, posterPath: $posterPath, popularity: $popularity, id: $id, backdropPath: $backdropPath, voteAverage: $voteAverage, overview: $overview, firstAirDate: $firstAirDate, originCountry: $originCountry, genreIds: $genreIds, originalLanguage: $originalLanguage, voteCount: $voteCount, name: $name, originalName: $originalName)';
   }
 
   @override
@@ -351,6 +370,7 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TVModel'))
+      ..add(DiagnosticsProperty('mediaType', mediaType))
       ..add(DiagnosticsProperty('posterPath', posterPath))
       ..add(DiagnosticsProperty('popularity', popularity))
       ..add(DiagnosticsProperty('id', id))
@@ -371,6 +391,8 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TVModel &&
+            (identical(other.mediaType, mediaType) ||
+                other.mediaType == mediaType) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.popularity, popularity) ||
@@ -400,6 +422,7 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      mediaType,
       posterPath,
       popularity,
       id,
@@ -430,7 +453,8 @@ class _$_TVModel with DiagnosticableTreeMixin implements _TVModel {
 
 abstract class _TVModel implements TVModel {
   factory _TVModel(
-      {@JsonKey(name: 'poster_path') final String? posterPath,
+      {@JsonKey(name: 'media_type') final MediaType mediaType,
+      @JsonKey(name: 'poster_path') final String? posterPath,
       final double popularity,
       final int id,
       @JsonKey(name: 'backdrop_path') final String? backdropPath,
@@ -446,6 +470,9 @@ abstract class _TVModel implements TVModel {
 
   factory _TVModel.fromJson(Map<String, dynamic> json) = _$_TVModel.fromJson;
 
+  @override
+  @JsonKey(name: 'media_type')
+  MediaType get mediaType;
   @override
   @JsonKey(name: 'poster_path')
   String? get posterPath;

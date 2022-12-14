@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tmdb_app/src/api.dart';
 import 'package:flutter_tmdb_app/src/env.dart';
-import 'package:flutter_tmdb_app/src/types/tv/model/tv.model.dart';
-import 'package:flutter_tmdb_app/src/types/tvs/params/get/tvs.params.get.dart';
-import 'package:flutter_tmdb_app/src/types/tvs/tvs.group.dart';
+import 'package:flutter_tmdb_app/src/types/person/model/person.model.dart';
+import 'package:flutter_tmdb_app/src/types/persons/params/get/persons.params.get.dart';
+import 'package:flutter_tmdb_app/src/types/persons/persons.group.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../utils/describe.dart';
@@ -17,20 +17,17 @@ void main() {
   });
   describe({
     'API': {
-      'TVs': {
+      'Persons': {
         'Group': () async {
-          const groups = TVsGroup.values;
+          const groups = PersonsGroup.values;
           final groupNames = List.of(groups.map((e) => e.name));
 
-          expect(groupNames, contains('airingToday'));
-          expect(groupNames, contains('onTheAir'));
           expect(groupNames, contains('popular'));
-          expect(groupNames, contains('topRated'));
         },
         'GET': Map.fromEntries(
-          TVsGroup.values.map((group) {
+          PersonsGroup.values.map((group) {
             return MapEntry(group.endpoint, () async {
-              final params = TVsGetParams(group: group);
+              final params = PersonsGetParams(group: group);
 
               expect(params.group, equals(group));
 
@@ -50,7 +47,7 @@ void main() {
                 }),
               );
 
-              final response = await api.getTVs(params);
+              final response = await api.getPersons(params);
 
               expect(
                 response.params,
@@ -70,7 +67,7 @@ void main() {
               );
               expect(
                 response.results.runtimeType,
-                equals(EqualUnmodifiableListView<TVModel>),
+                equals(EqualUnmodifiableListView<PersonModel>),
               );
               expect(
                 response.results.length,

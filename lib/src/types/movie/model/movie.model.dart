@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../media.type.dart';
+
 part 'movie.model.freezed.dart';
 part 'movie.model.g.dart';
 
 @freezed
 class MovieModel with _$MovieModel {
   factory MovieModel({
-    @Default(false) bool adult,
+    @JsonKey(name: 'media_type') @Default(MediaType.movie) MediaType mediaType,
+    bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,
     @JsonKey(name: 'genre_ids') @Default(<int>[]) List<int> genreIds,
     @Default(-1) int id,

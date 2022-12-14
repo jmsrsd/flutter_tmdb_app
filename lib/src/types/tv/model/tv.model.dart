@@ -1,12 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../media.type.dart';
+
 part 'tv.model.freezed.dart';
 part 'tv.model.g.dart';
 
 @freezed
 class TVModel with _$TVModel {
   factory TVModel({
+    @JsonKey(name: 'media_type') @Default(MediaType.tv) MediaType mediaType,
     @JsonKey(name: 'poster_path') String? posterPath,
     @Default(-1.0) double popularity,
     @Default(-1) int id,

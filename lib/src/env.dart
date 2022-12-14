@@ -17,6 +17,6 @@ class Env {
   }
 
   String get apiBaseUrl {
-    return dotenv.env['API_BASE_URL']?.trim() ?? '';
+    return 'https://api.themoviedb.org/3';
   }
 }

@@ -20,7 +20,9 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieModel {
-  bool get adult => throw _privateConstructorUsedError;
+  @JsonKey(name: 'media_type')
+  MediaType get mediaType => throw _privateConstructorUsedError;
+  bool? get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'genre_ids')
@@ -56,7 +58,8 @@ abstract class $MovieModelCopyWith<$Res> {
       _$MovieModelCopyWithImpl<$Res, MovieModel>;
   @useResult
   $Res call(
-      {bool adult,
+      {@JsonKey(name: 'media_type') MediaType mediaType,
+      bool? adult,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
@@ -85,7 +88,8 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adult = null,
+    Object? mediaType = null,
+    Object? adult = freezed,
     Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? id = null,
@@ -101,10 +105,14 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
     Object? voteCount = null,
   }) {
     return _then(_value.copyWith(
-      adult: null == adult
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
+              as MediaType,
+      adult: freezed == adult
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
@@ -170,7 +178,8 @@ abstract class _$$_MovieModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool adult,
+      {@JsonKey(name: 'media_type') MediaType mediaType,
+      bool? adult,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
@@ -197,7 +206,8 @@ class __$$_MovieModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? adult = null,
+    Object? mediaType = null,
+    Object? adult = freezed,
     Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? id = null,
@@ -213,10 +223,14 @@ class __$$_MovieModelCopyWithImpl<$Res>
     Object? voteCount = null,
   }) {
     return _then(_$_MovieModel(
-      adult: null == adult
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
+              as MediaType,
+      adult: freezed == adult
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
@@ -277,7 +291,8 @@ class __$$_MovieModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
   _$_MovieModel(
-      {this.adult = false,
+      {@JsonKey(name: 'media_type') this.mediaType = MediaType.movie,
+      this.adult,
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       @JsonKey(name: 'genre_ids') final List<int> genreIds = const <int>[],
       this.id = -1,
@@ -297,8 +312,10 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
       _$$_MovieModelFromJson(json);
 
   @override
-  @JsonKey()
-  final bool adult;
+  @JsonKey(name: 'media_type')
+  final MediaType mediaType;
+  @override
+  final bool? adult;
   @override
   @JsonKey(name: 'backdrop_path')
   final String? backdropPath;
@@ -347,7 +364,7 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MovieModel(adult: $adult, backdropPath: $backdropPath, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'MovieModel(mediaType: $mediaType, adult: $adult, backdropPath: $backdropPath, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
@@ -355,6 +372,7 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'MovieModel'))
+      ..add(DiagnosticsProperty('mediaType', mediaType))
       ..add(DiagnosticsProperty('adult', adult))
       ..add(DiagnosticsProperty('backdropPath', backdropPath))
       ..add(DiagnosticsProperty('genreIds', genreIds))
@@ -376,6 +394,8 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MovieModel &&
+            (identical(other.mediaType, mediaType) ||
+                other.mediaType == mediaType) &&
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
@@ -405,6 +425,7 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      mediaType,
       adult,
       backdropPath,
       const DeepCollectionEquality().hash(_genreIds),
@@ -436,7 +457,8 @@ class _$_MovieModel with DiagnosticableTreeMixin implements _MovieModel {
 
 abstract class _MovieModel implements MovieModel {
   factory _MovieModel(
-      {final bool adult,
+      {@JsonKey(name: 'media_type') final MediaType mediaType,
+      final bool? adult,
       @JsonKey(name: 'backdrop_path') final String? backdropPath,
       @JsonKey(name: 'genre_ids') final List<int> genreIds,
       final int id,
@@ -455,7 +477,10 @@ abstract class _MovieModel implements MovieModel {
       _$_MovieModel.fromJson;
 
   @override
-  bool get adult;
+  @JsonKey(name: 'media_type')
+  MediaType get mediaType;
+  @override
+  bool? get adult;
   @override
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath;

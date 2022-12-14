@@ -8,7 +8,9 @@ part of 'movie.model.dart';
 
 _$_MovieModel _$$_MovieModelFromJson(Map<String, dynamic> json) =>
     _$_MovieModel(
-      adult: json['adult'] as bool? ?? false,
+      mediaType: $enumDecodeNullable(_$MediaTypeEnumMap, json['media_type']) ??
+          MediaType.movie,
+      adult: json['adult'] as bool?,
       backdropPath: json['backdrop_path'] as String?,
       genreIds: (json['genre_ids'] as List<dynamic>?)
               ?.map((e) => e as int)
@@ -29,6 +31,7 @@ _$_MovieModel _$$_MovieModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_MovieModelToJson(_$_MovieModel instance) =>
     <String, dynamic>{
+      'media_type': _$MediaTypeEnumMap[instance.mediaType]!,
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,
       'genre_ids': instance.genreIds,
@@ -44,3 +47,8 @@ Map<String, dynamic> _$$_MovieModelToJson(_$_MovieModel instance) =>
       'vote_average': instance.voteAverage,
       'vote_count': instance.voteCount,
     };
+
+const _$MediaTypeEnumMap = {
+  MediaType.movie: 'movie',
+  MediaType.tv: 'tv',
+};

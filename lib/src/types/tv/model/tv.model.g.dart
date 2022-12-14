@@ -7,6 +7,8 @@ part of 'tv.model.dart';
 // **************************************************************************
 
 _$_TVModel _$$_TVModelFromJson(Map<String, dynamic> json) => _$_TVModel(
+      mediaType: $enumDecodeNullable(_$MediaTypeEnumMap, json['media_type']) ??
+          MediaType.tv,
       posterPath: json['poster_path'] as String?,
       popularity: (json['popularity'] as num?)?.toDouble() ?? -1.0,
       id: json['id'] as int? ?? -1,
@@ -30,6 +32,7 @@ _$_TVModel _$$_TVModelFromJson(Map<String, dynamic> json) => _$_TVModel(
 
 Map<String, dynamic> _$$_TVModelToJson(_$_TVModel instance) =>
     <String, dynamic>{
+      'media_type': _$MediaTypeEnumMap[instance.mediaType]!,
       'poster_path': instance.posterPath,
       'popularity': instance.popularity,
       'id': instance.id,
@@ -44,3 +47,8 @@ Map<String, dynamic> _$$_TVModelToJson(_$_TVModel instance) =>
       'name': instance.name,
       'original_name': instance.originalName,
     };
+
+const _$MediaTypeEnumMap = {
+  MediaType.movie: 'movie',
+  MediaType.tv: 'tv',
+};
