@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_tmdb_app/src/utils/evaluate.dart';
+import 'package:flutter_tmdb_app/src/utils/with_separator.dart';
 
 import '../../components/movie.component.dart';
 import '../../types/movies/model/movies.model.dart';
+import '../../types/movies/movies.group.dart';
+import '../../utils/noop.dart';
 
 class MainPageMovies extends HookWidget {
   final MoviesModel movies;
+  final void Function() onNextPageButtonTap;
+  final void Function() onBackPageButtonTap;
+  final void Function() onGroupSelectionButtonTap;
 
   const MainPageMovies({
     super.key,
     required this.movies,
+    this.onNextPageButtonTap = noop,
+    this.onBackPageButtonTap = noop,
+    this.onGroupSelectionButtonTap = noop,
   });
 
   @override
@@ -19,15 +29,39 @@ class MainPageMovies extends HookWidget {
     final page = movies.page;
     final results = movies.results;
     final params = movies.params;
+    final group = evaluate(() {
+      switch (params.group) {
+        case MoviesGroup.nowPlaying:
+          return 'Now playing';
+        case MoviesGroup.popular:
+          return 'Popular';
+        case MoviesGroup.upcoming:
+          return 'Upcoming';
+        case MoviesGroup.topRated:
+          return 'Top rated';
+        default:
+          return '';
+      }
+    });
 
     return Column(
       children: [
         ListTile(
+          onTap: () {},
           title: const Text('Movies'),
-          subtitle: const Text('Now playing'),
+          subtitle: Text(group),
           leading: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.arrow_back_outlined),
+            icon: const Icon(Icons.arrow_drop_down_outlined),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.movie_outlined),
+              const SizedBox(width: 16.0),
+              Text('$totalResults'),
+              const SizedBox(width: 16.0),
+            ],
           ),
         ),
         const SizedBox(height: kToolbarHeight / 4.0),
@@ -66,21 +100,28 @@ class MainPageMovies extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: onBackPageButtonTap,
                   icon: const Icon(
                     Icons.arrow_back_outlined,
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: Theme.of(context).colorScheme.onSurface,
-                    child: Text('$page / $totalPages'),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: withSeparator(
+                      separator: const SizedBox(width: 8),
+                      children: [
+                        Text('$page'),
+                        const Text('/'),
+                        Text('$totalPages'),
+                      ],
+                    ),
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: onNextPageButtonTap,
                   icon: const Icon(
                     Icons.arrow_forward_outlined,
                   ),
@@ -90,18 +131,6 @@ class MainPageMovies extends HookWidget {
             leading: CircleAvatar(
               backgroundColor: Colors.transparent,
               foregroundColor: Theme.of(context).colorScheme.onSurface,
-            ),
-            trailing: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              foregroundColor: Theme.of(context).colorScheme.onSurface,
-              radius: 48,
-              child: Row(
-                children: [
-                  const Icon(Icons.movie_outlined),
-                  const SizedBox(width: 16.0),
-                  Text('$totalResults'),
-                ],
-              ),
             ),
           ),
         ),

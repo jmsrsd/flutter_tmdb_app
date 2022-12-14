@@ -18,108 +18,116 @@ class Movie extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: '${Env.get().apiBaseImageUrl}'
-          '${movie.posterPath}',
-      httpHeaders: useAPI().header,
-      progressIndicatorBuilder: (context, url, progress) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-      imageBuilder: (context, imageProvider) {
-        return Card(
-          clipBehavior: Clip.antiAlias,
-          elevation: 0,
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Stack(
-            alignment: Alignment.center,
-            fit: StackFit.expand,
+    final api = useAPI();
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      elevation: 0,
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand,
+        children: [
+          Column(
             children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      color: Colors.transparent,
-                      child: Center(
-                        child: Image(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
-                          width: double.maxFinite,
-                          height: double.maxFinite,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                      top: kToolbarHeight / 8.0,
-                      bottom: kToolbarHeight / 2.0,
-                    ),
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: ListTile(
-                      isThreeLine: true,
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Theme.of(context).hintColor,
-                        child: Text(
-                          movie.voteAverage.toString(),
-                        ),
-                      ),
-                      title: Text(
-                        movie.title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: withSeparator(
-                          separator: const SizedBox(height: 16),
-                          children: [
-                            Text(
-                              movie.overview,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Row(
-                              children: withSeparator(
-                                separator: const SizedBox(width: 16),
-                                children: [
-                                  const SizedBox(),
-                                  Expanded(
-                                    child: Text(
-                                      movie.releaseDate.replaceAll('-', '/'),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                  const SizedBox(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Positioned.fill(
-                child: Material(
+              Expanded(
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
                   color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {},
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl: '${api.env.apiBaseImageUrl}'
+                          '${movie.posterPath}',
+                      httpHeaders: api.header,
+                      progressIndicatorBuilder: (context, url, progress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      errorWidget: (context, url, error) {
+                        return Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: Theme.of(
+                              context,
+                            ).colorScheme.onSurface,
+                            child: const Icon(Icons.movie_outlined),
+                          ),
+                        );
+                      },
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                      width: double.maxFinite,
+                      height: double.maxFinite,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(
+                  top: kToolbarHeight / 8.0,
+                  bottom: kToolbarHeight / 2.0,
+                ),
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: ListTile(
+                  isThreeLine: true,
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Theme.of(context).hintColor,
+                    child: Text(
+                      movie.voteAverage.toString(),
+                    ),
+                  ),
+                  title: Text(
+                    movie.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: withSeparator(
+                      separator: const SizedBox(height: 16),
+                      children: [
+                        Text(
+                          movie.overview,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Row(
+                          children: withSeparator(
+                            separator: const SizedBox(width: 16),
+                            children: [
+                              const SizedBox(),
+                              Expanded(
+                                child: Text(
+                                  movie.releaseDate.replaceAll('-', '/'),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                              const SizedBox(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-        );
-      },
+          Positioned.fill(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {},
+              ),
+            ),
+          ),
+        ],
+      ),
     );
 
     return Card(

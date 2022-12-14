@@ -27,8 +27,6 @@ class MainPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Home';
-
     final pageIndex = useState(0);
 
     final api = useAPI();
@@ -86,80 +84,100 @@ class MainPage extends HookWidget {
       //     pageIndex.value = index;
       //   },
       // ),
-      body: Center(
-        child: useAnimatedSwitcher(
-          child: SizedBox(
-            key: ValueKey(pageIndex.value),
-            child: [
-              SizedBox(
-                key: ValueKey(movies.hasLoaded),
-                child: !movies.hasLoaded
-                    ? const CircularProgressIndicator()
-                    : Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(
-                              kToolbarHeight / 4.0,
-                            ).copyWith(
-                              top: kToolbarHeight,
-                              bottom: kToolbarHeight / 2.0,
-                            ),
-                            child: Container(
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                ),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: kToolbarHeight / 8.0,
-                              ),
-                              child: ListTile(
-                                title: const Text('The Movie Database'),
-                                subtitle: const Text(
-                                  'The Movie Database app built with Flutter.',
-                                ),
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                  child: const Icon(Icons.movie_outlined),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: MainPageMovies(
-                              movies: movies.requireData,
-                            ),
-                          ),
-                        ],
-                      ),
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(
+              kToolbarHeight / 4.0,
+            ).copyWith(
+              top: kToolbarHeight,
+              bottom: kToolbarHeight / 2.0,
+            ),
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface,
+                ),
               ),
-              SizedBox(
-                key: ValueKey(tvs.hasLoaded),
-                child: !tvs.hasLoaded
-                    ? const CircularProgressIndicator()
-                    : MainPageTVs(
-                        tvs: tvs.requireData,
-                      ),
+              padding: const EdgeInsets.symmetric(
+                vertical: kToolbarHeight / 8.0,
               ),
-              SizedBox(
-                key: ValueKey(persons.hasLoaded),
-                child: !persons.hasLoaded
-                    ? const CircularProgressIndicator()
-                    : MainPagePersons(
-                        persons: persons.requireData,
-                      ),
+              child: ListTile(
+                title: const Text('The Movie Database'),
+                subtitle: const Text(
+                  'The Movie Database app built with Flutter.',
+                ),
+                leading: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Theme.of(
+                    context,
+                  ).colorScheme.onSurface,
+                  child: const Icon(Icons.movie_outlined),
+                ),
               ),
-            ].map((e) {
-              return useAnimatedSwitcher(child: e);
-            }).elementAt(pageIndex.value),
+            ),
           ),
-        ),
+          Expanded(
+            child: Center(
+              child: useAnimatedSwitcher(
+                child: SizedBox(
+                  key: ValueKey(pageIndex.value),
+                  child: [
+                    SizedBox(
+                      key: ValueKey(movies.hasLoaded),
+                      child: !movies.hasLoaded
+                          ? const CircularProgressIndicator()
+                          : MainPageMovies(
+                              movies: movies.requireData,
+                              onBackPageButtonTap: () {
+                                if (moviesParams.value.page <= 1) {
+                                  return;
+                                }
+                                moviesParams.value =
+                                    moviesParams.value.copyWith(
+                                  page: moviesParams.value.page - 1,
+                                );
+                              },
+                              onNextPageButtonTap: () {
+                                final totalPages = movies.data?.totalPages ??
+                                    moviesParams.value.page;
+                                if (moviesParams.value.page >= totalPages) {
+                                  return;
+                                }
+                                moviesParams.value =
+                                    moviesParams.value.copyWith(
+                                  page: moviesParams.value.page + 1,
+                                );
+                              },
+                            ),
+                    ),
+                    SizedBox(
+                      key: ValueKey(tvs.hasLoaded),
+                      child: !tvs.hasLoaded
+                          ? const CircularProgressIndicator()
+                          : MainPageTVs(
+                              tvs: tvs.requireData,
+                            ),
+                    ),
+                    SizedBox(
+                      key: ValueKey(persons.hasLoaded),
+                      child: !persons.hasLoaded
+                          ? const CircularProgressIndicator()
+                          : MainPagePersons(
+                              persons: persons.requireData,
+                            ),
+                    ),
+                  ].map((e) {
+                    return useAnimatedSwitcher(child: e);
+                  }).elementAt(pageIndex.value),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
