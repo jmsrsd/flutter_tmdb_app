@@ -1,8 +1,6 @@
-import 'package:flutter/widgets.dart';
-
-List<Widget> withSeparator({
-  required Widget separator,
-  required List<Widget> children,
+List<T> withSeparator<T>({
+  required T separator,
+  required List<T> children,
 }) {
   return children
       .map((e) => [separator, e])
