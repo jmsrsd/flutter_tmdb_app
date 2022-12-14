@@ -1,4 +1,6 @@
 {
+    "total_pages": 530,
+    "total_results": 10581,
     "page": 1,
     "results": [
         {
@@ -387,7 +389,5 @@
             "vote_average": 8.5,
             "vote_count": 23712
         }
-    ],
-    "total_pages": 530,
-    "total_results": 10581
+    ]
 }

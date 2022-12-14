@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tmdb_app/dotenv.dart';
 
-import '_describe.dart';
+import '../utils/describe.dart';
 
 void main() {
   setUpAll(Dotenv.load);

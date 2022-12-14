@@ -5,7 +5,7 @@ import 'package:flutter_tmdb_app/api.dart';
 import 'package:flutter_tmdb_app/dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '_describe.dart';
+import '../utils/describe.dart';
 
 void main() {
   setUpAll(Dotenv.load);
