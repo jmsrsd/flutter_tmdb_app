@@ -9,11 +9,11 @@ import '../../types/tvs/model/tvs.model.dart';
 import '../../utils/with_separator.dart';
 
 class MainPageTVs extends HookWidget {
-  final TVsModel model;
+  final TVsModel tvs;
 
   const MainPageTVs({
     super.key,
-    required this.model,
+    required this.tvs,
   });
 
   @override
@@ -23,7 +23,7 @@ class MainPageTVs extends HookWidget {
           .copyWith(bottom: kToolbarHeight),
       children: withSeparator(
         separator: const SizedBox(height: kToolbarHeight / 4.0),
-        children: model.toJson().entries.map((e) {
+        children: tvs.toJson().entries.map((e) {
           if (e.key == 'results') {
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -33,17 +33,17 @@ class MainPageTVs extends HookWidget {
                   height: kToolbarHeight / 4.0,
                 ),
                 children: List.of(e.value).map((e) {
-                  final model = TVModel.fromJson(e);
+                  final tv = TVModel.fromJson(e);
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Text(model.id.toString()),
+                        child: Text(tv.id.toString()),
                       ),
                       Expanded(
                         flex: 7,
-                        child: TV(model: model),
+                        child: TV(tv: tv),
                       ),
                     ],
                   );

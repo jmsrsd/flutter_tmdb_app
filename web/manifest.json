@@ -1,6 +1,6 @@
 {
     "name": "Flutter The Movie Database App",
-    "short_name": "Flutter TMDB App",
+    "short_name": "Flutter The Movie Database App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tmdb_app/src/components/movie.component.dart';
+import 'package:flutter_tmdb_app/src/types/media.type.dart';
 import 'package:flutter_tmdb_app/src/types/movie/model/movie.model.dart';
 import '../types/person/model/person.model.dart';
 import '../types/tv/model/tv.model.dart';
@@ -10,11 +11,11 @@ import '../utils/with_separator.dart';
 import 'tv.component.dart';
 
 class Person extends HookWidget {
-  final PersonModel model;
+  final PersonModel person;
 
   const Person({
     super.key,
-    required this.model,
+    required this.person,
   });
 
   @override
@@ -26,7 +27,7 @@ class Person extends HookWidget {
         separator: const SizedBox(
           height: kToolbarHeight / 4.0,
         ),
-        children: model.toJson().entries.map((e) {
+        children: person.toJson().entries.map((e) {
           if (e.key.startsWith('known_for')) {
             final knownFor = List.of(e.value);
             return Column(
@@ -36,37 +37,21 @@ class Person extends HookWidget {
                   height: kToolbarHeight / 4.0,
                 ),
                 children: knownFor.map((e) {
-                  if (e['media_type'] == 'movie') {
-                    final movie = MovieModel.fromJson(e);
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(movie.id.toString()),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Movie(model: movie),
-                        ),
-                      ],
-                    );
-                  } else {
-                    final tv = TVModel.fromJson(e);
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(tv.id.toString()),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: TV(model: tv),
-                        ),
-                      ],
-                    );
-                  }
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Text(e['id'].toString()),
+                      ),
+                      Expanded(
+                        flex: 7,
+                        child: e['media_type'] == MediaType.movie.name
+                            ? Movie(movie: MovieModel.fromJson(e))
+                            : TV(tv: TVModel.fromJson(e)),
+                      ),
+                    ],
+                  );
                 }).toList(),
               ),
             );
