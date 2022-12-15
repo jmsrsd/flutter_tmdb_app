@@ -11,6 +11,8 @@ import '../../types/movies/params/get/movies.params.get.dart';
 import '../../types/persons/params/get/persons.params.get.dart';
 import '../../types/persons/persons.group.dart';
 import '../../types/tvs/params/get/tvs.params.get.dart';
+import '../../types/watch.list.dart';
+import '../watch.list.page.dart';
 import 'main.page.group.selection.dart';
 import 'main.page.movies.dart';
 
@@ -39,52 +41,32 @@ class MainPage extends HookWidget {
     );
 
     final movies = useAsync([moviesParams.value], () async {
-      await Future.delayed(const Duration(milliseconds: 300));
       return await api.getMovies(moviesParams.value);
     });
 
-    final tvsGroup = useState(TVsGroup.topRated);
+    final tvsParams = useState(
+      TVsGetParams(
+        group: TVsGroup.airingToday,
+      ),
+    );
 
-    final tvs = useAsync([tvsGroup.value.endpoint], () async {
-      await Future.delayed(const Duration(milliseconds: 300));
-      return await api.getTVs(
-        TVsGetParams(group: tvsGroup.value),
-      );
+    final tvs = useAsync([tvsParams.value], () async {
+      return await api.getTVs(tvsParams.value);
     });
 
-    final personsGroup = useState(PersonsGroup.popular);
+    final personsParams = useState(PersonsGetParams(
+      group: PersonsGroup.popular,
+    ));
 
-    final persons = useAsync([personsGroup.value.endpoint], () async {
-      await Future.delayed(const Duration(milliseconds: 300));
+    final persons = useAsync([personsParams.value], () async {
       return await api.getPersons(
-        PersonsGetParams(group: personsGroup.value),
+        personsParams.value,
       );
     });
+
+    final watchList = useState(const WatchList());
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(title),
-      // ),
-      // bottomNavigationBar: NavigationBar(
-      //   destinations: const [
-      //     NavigationDestination(
-      //       label: 'Movies',
-      //       icon: Icon(Icons.movie_outlined),
-      //     ),
-      //     NavigationDestination(
-      //       label: 'TVs',
-      //       icon: Icon(Icons.tv_outlined),
-      //     ),
-      //     NavigationDestination(
-      //       label: 'People',
-      //       icon: Icon(Icons.group_outlined),
-      //     ),
-      //   ],
-      //   selectedIndex: pageIndex.value,
-      //   onDestinationSelected: (index) {
-      //     pageIndex.value = index;
-      //   },
-      // ),
       body: Column(
         children: [
           Container(
@@ -118,6 +100,30 @@ class MainPage extends HookWidget {
                   ).colorScheme.onSurface,
                   child: const Icon(Icons.movie_outlined),
                 ),
+                trailing: OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return WatchListPage(
+                          watchList: watchList,
+                        );
+                      }),
+                    );
+                  },
+                  style: ButtonStyle(
+                    padding: MaterialStatePropertyAll(
+                      const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 16,
+                      ).copyWith(right: 16),
+                    ),
+                  ),
+                  icon: Chip(
+                    label: Text(watchList.value.count().toString()),
+                  ),
+                  label: const Text('WATCH LIST'),
+                ),
               ),
             ),
           ),
@@ -133,6 +139,9 @@ class MainPage extends HookWidget {
                           ? const CircularProgressIndicator()
                           : MainPageMovies(
                               movies: movies.requireData,
+                              watchListIds: watchList.value.movies
+                                  .map((e) => e.id)
+                                  .toList(),
                               onGroupSelectionButtonTap: () {
                                 pageIndex.value = 3;
                               },
@@ -156,6 +165,17 @@ class MainPage extends HookWidget {
                                   page: moviesParams.value.page + 1,
                                 );
                               },
+                              onCardTap: (movie) {
+                                final list = List.of(watchList.value.movies);
+                                if (list.map((e) => e.id).contains(movie.id)) {
+                                  list.removeWhere((e) => e.id == movie.id);
+                                } else {
+                                  list.add(movie);
+                                }
+                                watchList.value = WatchList(
+                                  movies: List.of(Set.of(list)),
+                                );
+                              },
                             ),
                     ),
                     SizedBox(
@@ -164,6 +184,27 @@ class MainPage extends HookWidget {
                           ? const CircularProgressIndicator()
                           : MainPageTVs(
                               tvs: tvs.requireData,
+                              onGroupSelectionButtonTap: () {
+                                pageIndex.value = 3;
+                              },
+                              onBackPageButtonTap: () {
+                                if (tvsParams.value.page <= 1) {
+                                  return;
+                                }
+                                tvsParams.value = tvsParams.value.copyWith(
+                                  page: tvsParams.value.page - 1,
+                                );
+                              },
+                              onNextPageButtonTap: () {
+                                final totalPages = movies.data?.totalPages ??
+                                    tvsParams.value.page;
+                                if (tvsParams.value.page >= totalPages) {
+                                  return;
+                                }
+                                tvsParams.value = tvsParams.value.copyWith(
+                                  page: tvsParams.value.page + 1,
+                                );
+                              },
                             ),
                     ),
                     SizedBox(
@@ -172,6 +213,29 @@ class MainPage extends HookWidget {
                           ? const CircularProgressIndicator()
                           : MainPagePersons(
                               persons: persons.requireData,
+                              onGroupSelectionButtonTap: () {
+                                pageIndex.value = 3;
+                              },
+                              onBackPageButtonTap: () {
+                                if (personsParams.value.page <= 1) {
+                                  return;
+                                }
+                                personsParams.value =
+                                    personsParams.value.copyWith(
+                                  page: personsParams.value.page - 1,
+                                );
+                              },
+                              onNextPageButtonTap: () {
+                                final totalPages = persons.data?.totalPages ??
+                                    personsParams.value.page;
+                                if (personsParams.value.page >= totalPages) {
+                                  return;
+                                }
+                                personsParams.value =
+                                    personsParams.value.copyWith(
+                                  page: personsParams.value.page + 1,
+                                );
+                              },
                             ),
                     ),
                     MainPageGroupSelection(
@@ -181,6 +245,20 @@ class MainPage extends HookWidget {
                           page: 1,
                         );
                         pageIndex.value = 0;
+                      },
+                      onTVGroupSelected: (group) {
+                        tvsParams.value = tvsParams.value.copyWith(
+                          group: group,
+                          page: 1,
+                        );
+                        pageIndex.value = 1;
+                      },
+                      onPersonGroupSelected: (group) {
+                        personsParams.value = personsParams.value.copyWith(
+                          group: group,
+                          page: 1,
+                        );
+                        pageIndex.value = 2;
                       },
                     ),
                   ].map((e) {

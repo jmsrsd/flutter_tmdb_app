@@ -131,43 +131,59 @@ class MainPageGroupSelection extends HookWidget {
                 children: [
                   const SizedBox(height: kToolbarHeight / 4.0),
                   ListTile(
-                    onTap: () {},
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
                       child:
                           const Icon(Icons.subdirectory_arrow_right_outlined),
                     ),
+                    onTap: () {
+                      uncatch(() {
+                        onTVGroupSelected!(TVsGroup.airingToday);
+                      });
+                    },
                     title: const Text('Airing today'),
                   ),
                   ListTile(
-                    onTap: () {},
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
                       child:
                           const Icon(Icons.subdirectory_arrow_right_outlined),
                     ),
+                    onTap: () {
+                      uncatch(() {
+                        onTVGroupSelected!(TVsGroup.onTheAir);
+                      });
+                    },
                     title: const Text('On the air'),
                   ),
                   ListTile(
-                    onTap: () {},
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
                       child:
                           const Icon(Icons.subdirectory_arrow_right_outlined),
                     ),
+                    onTap: () {
+                      uncatch(() {
+                        onTVGroupSelected!(TVsGroup.popular);
+                      });
+                    },
                     title: const Text('Popular'),
                   ),
                   ListTile(
-                    onTap: () {},
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
                       child:
                           const Icon(Icons.subdirectory_arrow_right_outlined),
                     ),
+                    onTap: () {
+                      uncatch(() {
+                        onTVGroupSelected!(TVsGroup.topRated);
+                      });
+                    },
                     title: const Text('Top rated'),
                   ),
                 ].map((e) {
@@ -197,14 +213,18 @@ class MainPageGroupSelection extends HookWidget {
                 children: [
                   const SizedBox(height: kToolbarHeight / 4.0),
                   ListTile(
-                    onTap: () {},
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
                       child:
                           const Icon(Icons.subdirectory_arrow_right_outlined),
                     ),
-                    title: const Text('Now playing'),
+                    onTap: () {
+                      uncatch(() {
+                        onPersonGroupSelected!(PersonsGroup.popular);
+                      });
+                    },
+                    title: const Text('Popular'),
                   ),
                 ].map((e) {
                   return Card(

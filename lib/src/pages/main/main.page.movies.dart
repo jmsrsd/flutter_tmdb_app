@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_tmdb_app/src/types/movie/model/movie.model.dart';
 import 'package:flutter_tmdb_app/src/utils/evaluate.dart';
+import 'package:flutter_tmdb_app/src/utils/uncatch.dart';
 import 'package:flutter_tmdb_app/src/utils/with_separator.dart';
 
 import '../../components/movie.component.dart';
@@ -12,14 +14,18 @@ class MainPageMovies extends HookWidget {
   final MoviesModel movies;
   final void Function() onNextPageButtonTap;
   final void Function() onBackPageButtonTap;
-  final void Function() onGroupSelectionButtonTap;
+  final void Function()? onGroupSelectionButtonTap;
+  final void Function(MovieModel movie)? onCardTap;
+  final List<int> watchListIds;
 
   const MainPageMovies({
     super.key,
     required this.movies,
     this.onNextPageButtonTap = noop,
     this.onBackPageButtonTap = noop,
-    this.onGroupSelectionButtonTap = noop,
+    this.onGroupSelectionButtonTap,
+    this.onCardTap,
+    this.watchListIds = const [],
   });
 
   @override
@@ -46,23 +52,24 @@ class MainPageMovies extends HookWidget {
 
     return Column(
       children: [
-        ListTile(
-          title: const Text('Movies'),
-          subtitle: Text(group),
-          leading: IconButton(
-            onPressed: onGroupSelectionButtonTap,
-            icon: const Icon(Icons.menu_outlined),
+        if (onGroupSelectionButtonTap != null)
+          ListTile(
+            title: const Text('Movies'),
+            subtitle: Text(group),
+            leading: IconButton(
+              onPressed: onGroupSelectionButtonTap,
+              icon: const Icon(Icons.menu_outlined),
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.movie_outlined),
+                const SizedBox(width: 16.0),
+                Text('$totalResults'),
+                const SizedBox(width: 16.0),
+              ],
+            ),
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.movie_outlined),
-              const SizedBox(width: 16.0),
-              Text('$totalResults'),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-        ),
         const SizedBox(height: kToolbarHeight / 4.0),
         Expanded(
           child: LayoutBuilder(builder: (context, constraints) {
@@ -85,54 +92,63 @@ class MainPageMovies extends HookWidget {
               ).copyWith(bottom: kToolbarHeight * 2.0),
               itemCount: results.length,
               itemBuilder: (context, index) {
-                return Movie(movie: results[index]);
+                return Movie(
+                  movie: results[index],
+                  isOnWatchList: watchListIds.contains(results[index].id),
+                  onTap: () {
+                    uncatch(() {
+                      onCardTap!(results[index]);
+                    });
+                  },
+                );
               },
             );
           }),
         ),
-        Container(
-          alignment: Alignment.center,
-          height: kToolbarHeight,
-          child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: onBackPageButtonTap,
-                  icon: const Icon(
-                    Icons.arrow_back_outlined,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: withSeparator(
-                      separator: const SizedBox(width: 8),
-                      children: [
-                        Text('$page'),
-                        const Text('/'),
-                        Text('$totalPages'),
-                      ],
+        if (page > 0 && totalPages > 0)
+          Container(
+            alignment: Alignment.center,
+            height: kToolbarHeight,
+            child: ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: onBackPageButtonTap,
+                    icon: const Icon(
+                      Icons.arrow_back_outlined,
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: onNextPageButtonTap,
-                  icon: const Icon(
-                    Icons.arrow_forward_outlined,
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: withSeparator(
+                        separator: const SizedBox(width: 8),
+                        children: [
+                          Text('$page'),
+                          const Text('/'),
+                          Text('$totalPages'),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              foregroundColor: Theme.of(context).colorScheme.onSurface,
+                  IconButton(
+                    onPressed: onNextPageButtonTap,
+                    icon: const Icon(
+                      Icons.arrow_forward_outlined,
+                    ),
+                  ),
+                ],
+              ),
+              leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                foregroundColor: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
           ),
-        ),
       ],
     );
   }

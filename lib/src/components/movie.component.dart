@@ -1,19 +1,22 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_tmdb_app/src/env.dart';
 import 'package:flutter_tmdb_app/src/hooks/api.hook.dart';
+import 'package:flutter_tmdb_app/src/utils/noop.dart';
+
 import '../types/movie/model/movie.model.dart';
 import '../utils/with_separator.dart';
 
 class Movie extends HookWidget {
   final MovieModel movie;
+  final Function() onTap;
+  final bool isOnWatchList;
 
   const Movie({
     super.key,
     required this.movie,
+    this.onTap = noop,
+    this.isOnWatchList = false,
   });
 
   @override
@@ -100,13 +103,30 @@ class Movie extends HookWidget {
                             children: [
                               const SizedBox(),
                               Expanded(
-                                child: Text(
-                                  movie.releaseDate.replaceAll('-', '/'),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.right,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Chip(
+                                    padding: const EdgeInsets.all(8)
+                                        .copyWith(right: 4),
+                                    avatar: const Icon(
+                                      Icons.edit_calendar_outlined,
+                                    ),
+                                    label: Text(
+                                      movie.releaseDate.replaceAll('-', '/'),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  ),
                                 ),
                               ),
+                              if (isOnWatchList)
+                                CircleAvatar(
+                                  radius: 16,
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: Theme.of(context).hintColor,
+                                  child: const Icon(Icons.bookmark_added),
+                                ),
                               const SizedBox(),
                             ],
                           ),
@@ -122,33 +142,11 @@ class Movie extends HookWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {},
+                onTap: onTap,
               ),
             ),
           ),
         ],
-      ),
-    );
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(
-          kToolbarHeight / 2.0,
-        ).copyWith(bottom: kToolbarHeight),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: withSeparator(
-            separator: const SizedBox(
-              height: kToolbarHeight / 4.0,
-            ),
-            children: movie.toJson().entries.map((e) {
-              return jsonEncode(Map.fromEntries([e]));
-            }).map((e) {
-              return Text(e);
-            }).toList(),
-          ),
-        ),
       ),
     );
   }

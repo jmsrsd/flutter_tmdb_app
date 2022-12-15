@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
         return LayoutBuilder(builder: (context, constraints) {
           final ratio = constraints.biggest.aspectRatio;
           final reference = Size(
-            constraints.maxWidth.clamp(480.0, double.maxFinite),
-            constraints.maxHeight.clamp(480.0, double.maxFinite),
+            constraints.maxWidth.clamp(768.0, double.maxFinite),
+            constraints.maxHeight.clamp(1024.0, double.maxFinite),
           );
           return SizedBox.fromSize(
             size: constraints.biggest,
